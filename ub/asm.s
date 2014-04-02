@@ -2,32 +2,32 @@
 	.globl lab3S
 	.type lab3S, @function
 lab3S:
-	/* numerator */
+	/* numer */
 	/* a*a */
-	movb aaaS, %al
-	mulb aaaS
+	movb a, %al
+	mulb a
 	movw %ax, res
 	/* a*a-2 */
 	subw $2, res
 	xor %ax, %ax
-	movb cccS, %al
+	movb c, %al
 	addw %ax, res
 	movw res, %ax
-	movw %ax, numerator
-	/* denominator */
+	movw %ax, numer
+	/* denom */
 	/* 22/b */
 	xorw %ax, %ax
 	movb $22, %al
-	divb bbbS
+	divb b
 	/* c+22/b */	
-	movw %ax, denominator
-	movb cccS, %al
-	add %al, denominator
+	movw %ax, denom
+	movb c, %al
+	add %al, denom
 	/* result */
-	movw numerator, %ax
+	movw numer, %ax
 	cwd
-	idivw denominator
+	idivw denom
 	movw %ax, res
-	.size lab3S, . - lab3S
+	ret
 
 	/* (a*a-2+c)/(c+22/b) */

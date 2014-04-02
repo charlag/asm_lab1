@@ -4,30 +4,30 @@
 lab3S:
 	/* numerator */
 	/* a*a */
-	movb aaaS, %al
-	imulb aaaS
+	movb a, %al
+	imulb a
 	movw %ax, res
 	/* a*a-2 */
 	subw $2, res
-	movb cccS, %al
+	movb c, %al
 	cbw
 	addw %ax, res
 	movw res, %ax
-	movw %ax, numerator
-	/* denominator */
+	movw %ax, numer
+	/* denom */
 	/* 22/b */
 	movw $22, %ax
-	idivb bbbS
+	idivb b
 	cbw
-	movw %ax, denominator
+	movw %ax, denom
 	/* c+22/b */
-	movb cccS, %al
+	movb c, %al
 	cbw
-	add %ax, denominator
+	add %ax, denom
 	/* result */
-	movw numerator, %ax
+	movw numer, %ax
 	cwd
-	idivw denominator
+	idivw denom
 	movw %ax, res
 	.size lab3S, . - lab3S
 

@@ -1,0 +1,37 @@
+.text
+	.globl lab3S
+	.type lab3S, @function
+lab3S:
+	/* numer */
+
+	/* a*a */
+	movw a, %ax
+	mulw a
+	lea numer, %ebx /* ebx = &numer */
+	movw %ax, numer
+	movw %dx, 2(%ebx)
+	/* a*a-2 */
+	sub $2, numer
+	xor %ax, %ax
+	xor %dx, %dx
+	movw c, %ax
+	add %ax, numer
+	/* denom */
+	/* 22/b */
+	xorw %dx, %dx
+	movw $22, %ax
+	divw b
+	leal denom, %ebx
+	movw %ax, denom
+	movw $0, 2(%ebx)
+	/* c+22/b */
+	movw c, %ax
+	add %ax, denom
+	/* result */
+	movw denom, %ax
+	cwd
+	idivw denom
+	movw $30, res
+	.size lab3S, . - lab3S
+
+	/* (a*a-2+c)/(c+22/b) */
